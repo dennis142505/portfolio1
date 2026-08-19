@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Dennis Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Additional styles for services page */
+        .services-section {
+            padding-top: 10rem;
+            background-color: black;
+        }
+        
+        .services-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .services-intro {
+            text-align: center;
+            margin-bottom: 8rem;
+        }
+        
+        .services-intro h1 {
+            font-size: 4.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .services-intro p {
+            font-size: 1.8rem;
+            color: #ccc;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .roadmap-title {
+            font-size: 3.5rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: #b74b4b;
+        }
+        
+        .roadmap-subtitle {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 6rem;
+            color: #aaa;
+        }
+        
+        .roadmap-container {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto 8rem;
+        }
+        
+        /* REMOVED THE CENTER LINE */
+        /* Timeline line */
+        /* .roadmap-container::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: #b74b4b;
+            border-radius: 2px;
+        } */
+        
+        .roadmap-item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 6rem;
+            position: relative;
+        }
+        
+        .roadmap-item:nth-child(odd) {
+            flex-direction: row;
+        }
+        
+        .roadmap-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        
+        .roadmap-content {
+            flex: 1;
+            padding: 3rem;
+            background: rgba(30, 30, 30, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+        
+        .roadmap-item:nth-child(odd) .roadmap-content {
+            margin-right: 3rem;
+            text-align: right;
+        }
+        
+        .roadmap-item:nth-child(even) .roadmap-content {
+            margin-left: 3rem;
+            text-align: left;
+        }
+        
+        .roadmap-icon {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            background: #b74b4b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            z-index: 1;
+            box-shadow: 0 0 0 10px rgba(183, 75, 75, 0.1);
+        }
+        
+        .roadmap-number {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #b74b4b;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+        
+        .roadmap-content h3 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #b74b4b;
+        }
+        
+        .roadmap-content p {
+            font-size: 1.6rem;
+            line-height: 1.8;
+            color: #ddd;
+        }
+        
+        .services-subtitle {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: #b74b4b;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-bottom: 8rem;
+        }
+        
+        .service-card {
+            background: rgba(30, 30, 30, 0.8);
+            border-radius: 15px;
+            padding: 3rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .service-card:hover {
+            border-color: #b74b4b;
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(183, 75, 75, 0.2);
+        }
+        
+        .service-icon {
+            font-size: 5rem;
+            color: #b74b4b;
+            margin-bottom: 2rem;
+        }
+        
+        .service-card h3 {
+            font-size: 2.4rem;
+            margin-bottom: 1.5rem;
+            color: #fff;
+        }
+        
+        .service-card p {
+            font-size: 1.6rem;
+            line-height: 1.7;
+            color: #ccc;
+            flex-grow: 1;
+        }
+        
+        .btn-container {
+            text-align: center;
+            margin: 4rem 0;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 1.5rem 4rem;
+            background: #b74b4b;
+            border-radius: 4rem;
+            font-size: 1.8rem;
+            color: black;
+            letter-spacing: 0.3rem;
+            font-weight: 600;
+            border: 2px solid #b74b4b;
+            transition: 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        
+        .btn:hover {
+            background: transparent;
+            color: #b74b4b;
+            box-shadow: 0 0 25px #b74b4b;
+        }
+        
+        /* Responsive Design */
+        @media(max-width: 768px) {
+            /* REMOVED THE RESPONSIVE LINE TOO */
+            /* .roadmap-container::before {
+                left: 30px;
+            } */
+            
+            .roadmap-item {
+                flex-direction: row !important;
+                justify-content: flex-start;
+            }
+            
+            .roadmap-content {
+                margin-left: 80px !important;
+                margin-right: 0 !important;
+                text-align: left !important;
+            }
+            
+            .roadmap-icon {
+                left: 30px;
+            }
+            
+            .roadmap-number {
+                left: 30px;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media(max-width: 480px) {
+            .services-intro h1 {
+                font-size: 3.5rem;
+            }
+            
+            .roadmap-title {
+                font-size: 2.8rem;
+            }
+            
+            .roadmap-content h3 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">dennis</a>
+        
+        <div class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        
+        <nav id="navbar">
+          <a href="index.html" >Home</a>
+            <a href="about.html">About</a>
+            <a href="project.html">Projects</a>
+            <a href="services.html" class="active">Services</a>
+            <a href="skills.html">Skills</a>
+            <a href="dennis das.pdf">Dowload CV</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <section class="services-section">
+        <div class="services-content">
+            <!-- Introduction -->
+            <div class="services-intro">
+                <h1>My <span>Services</span></h1>
+                <p>Comprehensive web development solutions tailored to your needs</p>
+            </div>
+
+            <!-- Roadmap -->
+            <h2 class="roadmap-title">Python Full-Stack Developer Roadmap</h2>
+            <p class="roadmap-subtitle">Steps to Becoming a Full-Stack Developer</p>
+            
+            <div class="roadmap-container">
+                <!-- Roadmap Items -->
+                <div class="roadmap-item">
+                    <div class="roadmap-number">1</div>
+                    <div class="roadmap-icon">
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <div class="roadmap-content">
+                        <h3>Python Fundamentals</h3>
+                        <p>Master Python basics: variables, data types, control structures, functions, OOP, and file handling. Build a strong foundation for web development.</p>
+                    </div>
+                </div>
+                
+                <div class="roadmap-item">
+                    <div class="roadmap-number">2</div>
+                    <div class="roadmap-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="roadmap-content">
+                        <h3>Database Management</h3>
+                        <p>Learn SQL with PostgreSQL/MySQL and NoSQL with MongoDB. Understand database design, normalization, and ORM concepts with SQLAlchemy.</p>
+                    </div>
+                </div>
+                
+                <div class="roadmap-item">
+                    <div class="roadmap-number">3</div>
+                    <div class="roadmap-icon">
+                        <i class="fab fa-js-square"></i>
+                    </div>
+                    <div class="roadmap-content">
+                        <h3>Frontend Development</h3>
+                        <p>HTML5, CSS3, JavaScript (ES6+), and React.js. Create responsive, interactive user interfaces with modern frameworks and libraries.</p>
+                    </div>
+                </div>
+                
+                <div class="roadmap-item">
+                    <div class="roadmap-number">4</div>
+                    <div class="roadmap-icon">
+                        <i class="fab fa-django"></i>
+                    </div>
+                    <div class="roadmap-content">
+                        <h3>Backend with Django</h3>
+                        <p>Build robust web applications with Django framework. Learn MVC architecture, URL routing, templates, forms, authentication, and REST APIs.</p>
+                    </div>
+                </div>
+                
+                <div class="roadmap-item">
+                    <div class="roadmap-number">5</div>
+                    <div class="roadmap-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <div class="roadmap-content">
+                        <h3>Deployment & DevOps</h3>
+                        <p>Deploy applications using Docker, AWS, or Heroku. Learn about CI/CD pipelines, Nginx, Gunicorn, and server management for production environments.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Services Offered -->
+            <h2 class="services-subtitle">My Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Full-Stack Development</h3>
+                    <p>
+                        Complete web application development from front-end to back-end using modern 
+                        technologies like Django, React, and PostgreSQL. I build scalable, maintainable 
+                        applications that meet your business requirements.
+                    </p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3>Front-End Development</h3>
+                    <p>
+                        Creating responsive, user-friendly interfaces with HTML, CSS, JavaScript, and 
+                        React. Focus on performance, accessibility, and modern design principles to 
+                        deliver exceptional user experiences.
+                    </p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3>Back-End Development</h3>
+                    <p>
+                        Robust server-side development with Django, Flask, and Python. Building RESTful 
+                        APIs, database design, authentication systems, and ensuring application security 
+                        and performance.
+                    </p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Database Design</h3>
+                    <p>
+                        Efficient database architecture and management with PostgreSQL, MySQL, and MongoDB. 
+                        Designing schemas, optimizing queries, and implementing proper data relationships 
+                        for scalable applications.
+                    </p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Responsive Web Design</h3>
+                    <p>
+                        Ensuring your website looks great and functions perfectly on all devices. Using 
+                        modern CSS frameworks and techniques to create fluid, adaptive layouts that work 
+                        seamlessly across different screen sizes.
+                    </p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Deployment & DevOps</h3>
+                    <p>
+                        Application deployment on cloud platforms, Docker containerization, CI/CD pipeline 
+                        setup, and server configuration. Ensuring your application is production-ready 
+                        and performs optimally.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="btn-container">
+                <a href="index.html" class="btn">Back to Home</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menuToggle');
+            const navbar = document.getElementById('navbar');
+            
+            if (menuToggle && navbar) {
+                menuToggle.addEventListener('click', () => {
+                    navbar.classList.toggle('active');
+                });
+                
+                const navLinks = document.querySelectorAll('nav a');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        navbar.classList.remove('active');
+                    });
+                });
+            }
+            
+            // Animate roadmap items on scroll
+            const roadmapItems = document.querySelectorAll('.roadmap-item');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            roadmapItems.forEach(item => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(30px)';
+                item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(item);
+            });
+            
+            // Animate service cards
+            const serviceCards = document.querySelectorAll('.service-card');
+            
+            serviceCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transitionDelay = `${index * 0.1}s`;
+                
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 500 + (index * 100));
+            });
+        });
+    </script>
+</body>
+</html>

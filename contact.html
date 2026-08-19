@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Me</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            border: none;
+            outline: none;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html{
+            font-size: 62.5%;
+        }
+
+        body{
+            width: 100%;
+            height: 100vh;
+            overflow-x: hidden;
+            background-color: black;
+            color: white;
+        }
+
+        header{
+            margin-top: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem 9%;
+            background-color: transparent;
+            filter: drop-shadow(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .logo{
+            font-size: 3rem;
+            color: #b74b4b;
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.5s ease;
+        }
+
+        .logo:hover{
+            transform: scale(1.1);
+        }
+
+        nav a{
+            font-size: 1.8rem;
+            color: white;
+            margin-left: 4rem;
+            font-weight: 500;
+            transition: 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        nav a:hover,
+        nav a.active{
+            color: #b74b4b;
+            border-bottom: 3px solid #b74b4b;
+        }
+
+        /* Mobile menu toggle */
+        .menu-toggle {
+            display: none;
+            font-size: 2.5rem;
+            color: white;
+            cursor: pointer;
+        }
+
+        @media(max-width:995px){
+            .menu-toggle {
+                display: block;
+            }
+            
+            nav{
+                position: absolute;
+                display: none;
+                top: 0;
+                right: 0;
+                width: 40%;
+                border-left: 3px solid #b74b4b;
+                border-bottom: 3px solid #b74b4b;
+                border-bottom-left-radius: 2rem;
+                padding: 1rem;
+                background-color: #161616;
+                border-top: 0.1rem solid rgba(0,0,0,0.1);
+            }
+
+            nav.active{
+                display: block;
+            }
+
+            nav a{
+                display: block;
+                font-size: 2rem;
+                margin: 3rem 0;
+            }
+
+            nav a:hover,
+            nav a.active{
+                padding: 1rem;
+                border-radius: 0.5rem;
+                border-bottom: 0.5rem solid #b74b4b;
+            }
+        }
+
+        /* Contact Section Styles */
+        .contact-section {
+            min-height: 100vh;
+            padding: 10rem 9% 5rem;
+            background-color: black;
+        }
+
+        .heading {
+            font-size: 5rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .sub-heading {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 6rem;
+            color: #aaa;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            padding: 3rem;
+            background: rgba(30, 30, 30, 0.8);
+            border-radius: 15px;
+            border: 2px solid #333;
+        }
+
+        .contact-info h3 {
+            font-size: 3rem;
+            color: #b74b4b;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #444;
+        }
+
+        .info-icon {
+            font-size: 3rem;
+            color: #b74b4b;
+            margin-right: 2rem;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        .info-content h4 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-content p, .info-content a {
+            font-size: 1.6rem;
+            color: #ccc;
+            transition: color 0.3s ease;
+        }
+
+        .info-content a:hover {
+            color: #b74b4b;
+        }
+
+        .social-profiles {
+            margin-top: 4rem;
+        }
+
+        .social-profiles h4 {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            color: #b74b4b;
+            text-align: center;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 5rem;
+            height: 5rem;
+            background-color: transparent;
+            border: 0.2rem solid #b74b4b;
+            font-size: 2.5rem;
+            border-radius: 50%;
+            transition: 0.3s ease;
+            color: #b74b4b;
+        }
+
+        .social-icons a:hover {
+            color: black;
+            transform: scale(1.1) translateY(-5px);
+            background-color: #b74b4b;
+            box-shadow: 0  0 25px #b74b4b;
+        }
+
+        /* Contact Form Styles */
+        .contact-form {
+            padding: 3rem;
+            background: rgba(30, 30, 30, 0.8);
+            border-radius: 15px;
+            border: 2px solid #333;
+        }
+
+        .contact-form h3 {
+            font-size: 3rem;
+            color: #b74b4b;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 2.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #eee;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1.5rem;
+            font-size: 1.6rem;
+            background: #111;
+            color: white;
+            border: 1px solid #444;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #b74b4b;
+            box-shadow: 0 0 10px rgba(183, 75, 75, 0.3);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .btn{
+            display: inline-block;
+            padding: 1.5rem 3.5rem;
+            background-color: black;
+            border-radius: 4rem;
+            font-size: 1.8rem;
+            color: #b74b4b;
+            letter-spacing: 0.3rem;
+            font-weight: 600;
+            border: 2px solid #b74b4b;
+            transition: 0.3s ease;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .btn:hover{
+            transform: scale(1.03);
+            background-color: #b74b4b;
+            color: black;
+            box-shadow: 0 0 25px #b74b4b;
+        }
+
+        /* Address IP styling */
+        .ip-address {
+            font-family: monospace;
+            background: #111;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            border: 1px solid #b74b4b;
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+
+        /* Responsive Design */
+        @media(max-width: 1100px){
+            .contact-container {
+                grid-template-columns: 1fr;
+                max-width: 800px;
+                gap: 4rem;
+            }
+            
+            .contact-info, .contact-form {
+                padding: 3rem 2.5rem;
+            }
+        }
+
+        @media(max-width: 768px){
+            .heading {
+                font-size: 4rem;
+            }
+            
+            .sub-heading {
+                font-size: 1.8rem;
+                margin-bottom: 4rem;
+            }
+            
+            .contact-section {
+                padding: 10rem 5% 5rem;
+            }
+            
+            .contact-info h3, .contact-form h3 {
+                font-size: 2.5rem;
+            }
+            
+            .info-content h4 {
+                font-size: 1.8rem;
+            }
+            
+            .info-content p, .info-content a {
+                font-size: 1.5rem;
+            }
+            
+            .info-icon {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media(max-width: 480px){
+            .heading {
+                font-size: 3.5rem;
+            }
+            
+            .contact-info, .contact-form {
+                padding: 2.5rem 2rem;
+            }
+            
+            .social-icons a {
+                width: 4.5rem;
+                height: 4.5rem;
+                font-size: 2.2rem;
+            }
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 9%;
+            text-align: center;
+            background-color: #111;
+            border-top: 1px solid #333;
+            font-size: 1.6rem;
+            color: #aaa;
+        }
+
+        footer p {
+            margin-bottom: 1rem;
+        }
+
+        /* Animation for form */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .contact-info, .contact-form {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .contact-form {
+            animation-delay: 0.3s;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <a href="#" class="logo">Portfolio</a>
+        
+        <div class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        
+        <nav id="navbar">
+           <a href="index.html" >Home</a>
+            <a href="about.html">About</a>
+            <a href="">Projects</a>
+            <a href="services.html">Services</a>
+            <a href="skills.html">Skills</a>
+            <a href="dennis das.pdf">Dowload CV</a>
+            <a href="contact.html" class="active">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <h1 class="heading">Contact <span>Me</span></h1>
+        <p class="sub-heading">Get in touch with me for collaborations or just to say hello!</p>
+        
+        <div class="contact-container">
+            <!-- Contact Info -->
+            <div class="contact-info">
+                <h3>My Address</h3>
+                
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="info-content">
+                        <h4>Location</h4>
+                        <p>Kerala, India</p>
+                        <div class="ip-address">192.168.l.1</div>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="info-content">
+                        <h4>Email Me</h4>
+                        <a href="mailto:ajincc88@gmail.com">dennis2004das@gmail.com</a>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div class="info-content">
+                        <h4>Call Me</h4>
+                        <a href="tel:+1234567890">+91 7598332904</a>
+                    </div>
+                </div>
+                
+                <div class="social-profiles">
+                    <h4>Social Profiles</h4>
+                    <div class="social-icons">
+                        <a href="https://github.com/dennis142505/project"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/dennis-das-8046942b8/"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/pogba_1405/"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h3>Send Message</h3>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Portfolio. All rights reserved.</p>
+        <p>Designed with <span style="color: #b74b4b;">♥</span> by Dennis Das</p>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navbar = document.getElementById('navbar');
+        
+        menuToggle.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+            
+            // Change icon
+            const icon = menuToggle.querySelector('i');
+            if (navbar.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Form submission
+        const contactForm = document.getElementById('contactForm');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Here you would normally send the form data to a server
+            // For this example, we'll just show an alert
+            alert(`Thank you, ${name}! Your message has been sent. I'll get back to you soon at ${email}.`);
+            
+            // Reset the form
+            contactForm.reset();
+        });
+        
+        // Close menu when clicking on a link
+        const navLinks = document.querySelectorAll('nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navbar.classList.remove('active');
+                const icon = menuToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+        
+        // Animation for form elements
+        window.addEventListener('load', () => {
+            const formGroups = document.querySelectorAll('.form-group');
+            formGroups.forEach((group, index) => {
+                group.style.animation = `fadeInUp 0.5s ease forwards ${index * 0.1}s`;
+                group.style.opacity = '0';
+            });
+        });
+    </script>
+</body>
+</html>

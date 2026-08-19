@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Portfolio Website</title>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">dennis</a>
+        
+        <div class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        
+        <nav id="navbar">
+<a href="index.html" class="active">Home</a>
+            <a href="about.html">About</a>
+            <a href="project.html">Projects</a>
+            <a href="services.html">Services</a>
+            <a href="skills.html">Skills</a>
+            <a href="dennis das.pdf">Dowload CV</a>
+            <a href="contact.html">Contact</a>        </nav>
+    </header>
+    
+    <section class="home">
+        <div class="home-img">
+            <img src="hero.png" alt="profile">
+        </div>
+        <div class="home-content">
+            <h1>Hi, It's <span>dennis das</span></h1>
+            <h3 class="typing-text">I'm a' <span></span>'</h3>
+           
+            <div class="social-icons">
+                <a href="https://github.com/dennis142505/project"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/dennis-das-8046942b8/"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/pogba_1405/"><i class="fab fa-instagram"></i></a>
+            </div>
+            
+        </div>
+    </section>
+
+    <script>
+        // Mobile menu toggle for index.html
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menuToggle');
+            const navbar = document.getElementById('navbar');
+            
+            if (menuToggle && navbar) {
+                menuToggle.addEventListener('click', () => {
+                    navbar.classList.toggle('active');
+                });
+                
+                // Close menu when clicking on a link
+                const navLinks = document.querySelectorAll('nav a');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        navbar.classList.remove('active');
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <title>Portfolio Website</title>
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            border: none;
+            outline: none;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+            font-size: 62.5%;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            width: 100%;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-color: black;
+            color: white;
+        }
+
+        /* ===== HEADER / NAV ===== */
+        header {
+            margin-top: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem 9%;
+            background-color: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            font-size: 3rem;
+            color: #b74b4b;
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.5s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+        }
+
+        nav a {
+            font-size: 1.6rem;
+            color: white;
+            margin-left: 3rem;
+            font-weight: 500;
+            transition: 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #b74b4b;
+            border-bottom: 3px solid #b74b4b;
+        }
+
+        /* Mobile menu toggle */
+        .menu-toggle {
+            display: none;
+            font-size: 2.5rem;
+            color: white;
+            cursor: pointer;
+        }
+
+        @media(max-width:995px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                position: absolute;
+                display: none;
+                top: 0;
+                right: 0;
+                width: 60%;
+                border-left: 3px solid #b74b4b;
+                border-bottom: 3px solid #b74b4b;
+                border-bottom-left-radius: 2rem;
+                padding: 1rem;
+                background-color: #161616;
+                border-top: 0.1rem solid rgba(0, 0, 0, 0.1);
+            }
+
+            nav.active {
+                display: block;
+            }
+
+            nav a {
+                display: block;
+                font-size: 2rem;
+                margin: 2.5rem 0;
+            }
+
+            nav a:hover,
+            nav a.active {
+                padding: 1rem;
+                border-radius: 0.5rem;
+                border-bottom: 0.5rem solid #b74b4b;
+            }
+        }
+
+        /* ===== PROJECTS SECTION ===== */
+        .projects-section {
+            background-color: black;
+            padding: 12rem 9% 5rem;
+            min-height: 100vh;
+        }
+
+        .page-title {
+            font-size: 5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .page-subtitle {
+            font-size: 2rem;
+            color: #aaa;
+            margin-bottom: 4rem;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .project-card {
+            background: rgba(30, 30, 30, 0.8);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid #2a2a2a;
+            transition: 0.3s ease;
+            position: relative;
+        }
+
+        .project-card:hover {
+            border-color: #b74b4b;
+            transform: translateY(-6px);
+            box-shadow: 0 10px 30px rgba(183, 75, 75, 0.15);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: #b74b4b;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .project-image .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            opacity: 0;
+            transition: 0.3s ease;
+        }
+
+        .project-card:hover .overlay {
+            opacity: 1;
+        }
+
+        .project-image .overlay a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: white;
+            background: rgba(183, 75, 75, 0.9);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-size: 1.4rem;
+            font-weight: 500;
+            transition: 0.3s ease;
+            text-decoration: none;
+        }
+
+        .project-image .overlay a:hover {
+            transform: scale(1.05);
+            background: #b74b4b;
+            box-shadow: 0 0 20px rgba(183, 75, 75, 0.5);
+        }
+
+        .project-image .overlay a i {
+            font-size: 1.8rem;
+        }
+
+        .project-image .overlay .links-group {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .project-info {
+            padding: 2rem;
+        }
+
+        .project-info .badge {
+            display: inline-block;
+            background: #b74b4b22;
+            color: #b74b4b;
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            margin-bottom: 1rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .project-info h3 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+        }
+
+        .project-info p {
+            font-size: 1.4rem;
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem 2rem;
+            font-size: 1.3rem;
+            color: #aaa;
+            border-top: 1px solid #2a2a2a;
+            padding-top: 1.5rem;
+        }
+
+        .project-meta i {
+            color: #b74b4b;
+            margin-right: 0.5rem;
+        }
+
+        .project-meta .tag {
+            background: #1f1f1f;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            color: #ddd;
+        }
+
+        .project-count {
+            text-align: center;
+            color: #888;
+            font-size: 1.6rem;
+            margin-top: 3rem;
+        }
+
+        /* Bottom Meta */
+        .bottom-meta {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 4rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid #1f1f1f;
+            color: #888;
+            font-size: 1.4rem;
+        }
+
+        .weather {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: #161616;
+            padding: 0.6rem 1.6rem;
+            border-radius: 60px;
+            border: 1px solid #2a2a2a;
+        }
+
+        .weather i {
+            font-size: 2rem;
+            color: #ffd54f;
+        }
+
+        .weather .temp {
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .jabari {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .jabari i {
+            color: #b74b4b;
+        }
+
+        @media(max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page-title {
+                font-size: 3.5rem;
+            }
+        }
+
+        @media(max-width: 480px) {
+            .page-title {
+                font-size: 2.8rem;
+            }
+
+            .project-image {
+                height: 150px;
+            }
+
+            .project-image .overlay a {
+                padding: 0.6rem 1.5rem;
+                font-size: 1.2rem;
+            }
+
+            .project-image .overlay .links-group {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ===== HEADER / NAVBAR ONLY ===== -->
+    <header>
+        <a href="#" class="logo">dennis</a>
+        
+        <div class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        
+        <nav id="navbar">
+            <a href="index.html" class="active">Home</a>
+            <a href="about.html">About</a>
+            <a href="project.html">Projects</a>
+            <a href="services.html">Services</a>
+            <a href="skills.html">Skills</a>
+            <a href="dennis das.pdf">Download CV</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <!-- ===== PROJECTS SECTION ===== -->
+    <section class="projects-section">
+        <h1 class="page-title">MY <span style="color: #b74b4b;">WORKS</span></h1>
+        <p class="page-subtitle">Explore my projects</p>
+
+        <!-- Projects Grid -->
+        <div class="projects-grid">
+            <!-- Explore Shows -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="waterintake.png" alt="Explore Shows" />
+                    <div class="overlay">
+                        <div class="links-group">
+                            <a href="https://github.com/dennis142505/explore-shows" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                            <a href="https://explore-shows.vercel.app" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Vercel
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="badge">WEB</span>
+                    <h3>WHATER INTAKE</h3>
+                    <p>easy to book doctor</p>
+                    <div class="project-meta">
+                        <span><i class="fab fa-react"></i> React</span>
+                        <span><i class="fas fa-database"></i>My sql</span>
+                        <span class="tag">#waterinake</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recipe Sharing Platform -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="ulrshort.png" alt="Recipe Sharing Platform" />
+                    <div class="overlay">
+                        <div class="links-group">
+                            <a href="https://github.com/dennis142505/recipe-sharing" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                            <a href="https://recipe-sharing.vercel.app" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Vercel
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="badge">APP</span>
+                    <h3>Recipe Sharing Platform</h3>
+                    <p>DISCOVER AND SHARE DELICIOUS RECIPES WITH A VIBRANT COMMUNITY. EXPLORE A VARIETY OF DISHES, SAVE YOUR FAVORITES, AND INSPIRE OTHERS WITH YOUR CULINARY CREATIONS.</p>
+                    <div class="project-meta">
+                        <span><i class="fab fa-python"></i> Django</span>
+                        <span><i class="fas fa-mobile-alt"></i> Flutter</span>
+                        <span class="tag">#food</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Movie Store -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="hospital.png" alt="Movie Store" />
+                    <div class="overlay">
+                        <div class="links-group">
+                            <a href="https://github.com/dennis142505/movie-store" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                            <a href="https://movie-store.vercel.app" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Vercel
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="badge">WEB</span>
+                    <h3>Movie Store</h3>
+                    <p>Book your tickets for the latest movies quickly and easily. Full-featured booking system with real-time seat selection.</p>
+                    <div class="project-meta">
+                        <span><i class="fab fa-python"></i> Django</span>
+                        <span><i class="fab fa-react"></i> React</span>
+                        <span class="tag">#booking</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+    </section>
+
+    <script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menuToggle');
+            const navbar = document.getElementById('navbar');
+            
+            if (menuToggle && navbar) {
+                menuToggle.addEventListener('click', () => {
+                    navbar.classList.toggle('active');
+                });
+                
+                // Close menu when clicking on a link
+                const navLinks = document.querySelectorAll('nav a');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        navbar.classList.remove('active');
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

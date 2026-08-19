@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Dennis Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Additional styles for about page */
+        .about-section {
+            padding-top: 10rem;
+            background-color: black;
+        }
+        
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .about-intro {
+            text-align: center;
+            margin-bottom: 8rem;
+        }
+        
+        .about-intro h1 {
+            font-size: 4.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .about-intro p {
+            font-size: 1.8rem;
+            color: #ccc;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .about-details {
+            display: flex;
+            gap: 6rem;
+            margin-bottom: 8rem;
+            align-items: flex-start;
+        }
+        
+        .about-image {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .about-image img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(183, 75, 75, 0.3);
+        }
+        
+        .about-info {
+            flex: 1.5;
+        }
+        
+        .about-info h2 {
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            color: #b74b4b;
+        }
+        
+        .about-info > p {
+            font-size: 1.7rem;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            color: #ddd;
+        }
+        
+        .personal-info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        .info-icon {
+            width: 4rem;
+            height: 4rem;
+            background: rgba(183, 75, 75, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #b74b4b;
+        }
+        
+        .info-text {
+            flex: 1;
+        }
+        
+        .info-text strong {
+            display: block;
+            font-size: 1.6rem;
+            color: #b74b4b;
+            margin-bottom: 0.5rem;
+        }
+        
+        .info-text span {
+            font-size: 1.5rem;
+            color: #aaa;
+        }
+        
+        .facts {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            margin-bottom: 8rem;
+            text-align: center;
+        }
+        
+        .fact-item {
+            padding: 3rem 2rem;
+            background: rgba(30, 30, 30, 0.8);
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+        
+        .fact-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(183, 75, 75, 0.2);
+        }
+        
+        .fact-number {
+            font-size: 4rem;
+            font-weight: 700;
+            color: #b74b4b;
+            margin-bottom: 1rem;
+        }
+        
+        .fact-text {
+            font-size: 1.6rem;
+            color: #ccc;
+        }
+        
+        .interests {
+            margin-bottom: 8rem;
+        }
+        
+        .interests h3 {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: #b74b4b;
+        }
+        
+        .interest-items {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+        
+        .interest-item {
+            background: rgba(30, 30, 30, 0.8);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .interest-item:hover {
+            border-color: #b74b4b;
+            transform: translateY(-5px);
+        }
+        
+        .interest-icon {
+            font-size: 3rem;
+            color: #b74b4b;
+            margin-bottom: 1rem;
+        }
+        
+        .interest-name {
+            font-size: 1.6rem;
+            color: #fff;
+        }
+        
+        .skills-progress {
+            margin-bottom: 8rem;
+        }
+        
+        .skills-progress h3 {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: #b74b4b;
+        }
+        
+        .testimonials {
+            margin-bottom: 8rem;
+        }
+        
+        .testimonials h3 {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: #b74b4b;
+        }
+        
+        .testimonial-slider {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .testimonial-item {
+            background: rgba(30, 30, 30, 0.8);
+            padding: 4rem;
+            border-radius: 20px;
+            text-align: center;
+            display: none;
+        }
+        
+        .testimonial-item.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .testimonial-text {
+            font-size: 1.8rem;
+            line-height: 1.6;
+            color: #ddd;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+        }
+        
+        .author-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid #b74b4b;
+        }
+        
+        .author-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .author-info h4 {
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+        
+        .author-info p {
+            font-size: 1.4rem;
+            color: #b74b4b;
+        }
+        
+        .testimonial-nav {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .testimonial-nav button {
+            background: rgba(183, 75, 75, 0.2);
+            border: none;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-nav button:hover {
+            background: #b74b4b;
+        }
+        
+        .portfolio {
+            margin-bottom: 8rem;
+        }
+        
+        .portfolio h3 {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: #b74b4b;
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+        
+        .portfolio-item {
+            background: rgba(30, 30, 30, 0.8);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(183, 75, 75, 0.2);
+        }
+        
+        .portfolio-img {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .portfolio-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .portfolio-item:hover .portfolio-img img {
+            transform: scale(1.1);
+        }
+        
+        .portfolio-content {
+            padding: 2rem;
+        }
+        
+        .portfolio-content h4 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+        
+        .portfolio-content p {
+            font-size: 1.5rem;
+            color: #ccc;
+            line-height: 1.6;
+        }
+        
+        .portfolio-tag {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(183, 75, 75, 0.2);
+            color: #b74b4b;
+            border-radius: 20px;
+            font-size: 1.2rem;
+            margin-top: 1rem;
+        }
+        
+        /* Responsive Design */
+        @media(max-width: 992px) {
+            .about-details {
+                flex-direction: column;
+                gap: 4rem;
+            }
+            
+            .about-image img {
+                max-width: 300px;
+            }
+            
+            .facts {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .interest-items {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media(max-width: 768px) {
+            .personal-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .interest-items {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .testimonial-item {
+                padding: 3rem 2rem;
+            }
+        }
+        
+        @media(max-width: 480px) {
+            .facts {
+                grid-template-columns: 1fr;
+            }
+            
+            .interest-items {
+                grid-template-columns: 1fr;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-intro h1 {
+                font-size: 3.5rem;
+            }
+            
+            .about-info h2 {
+                font-size: 2.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">dennis</a>
+        
+        <div class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        
+        <nav id="navbar">
+           <a href="index.html" >Home</a>
+            <a href="about.html" class="active">About</a>
+            <a href="project.html">Projects</a>
+            <a href="services.html">Services</a>
+            <a href="skills.html">Skills</a>
+            <a href="dennis das.pdf">Dowload CV</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <section class="about-section">
+        <div class="about-content">
+            <!-- Introduction -->
+            <div class="about-intro">
+                <h1>About <span>Me</span></h1>
+                <p>Learn more about me</p>
+            </div>
+
+            <!-- Personal Details -->
+            <div class="about-details">
+                <div class="about-image">
+                    <img src="hero.png" alt="Dennis Das">
+                </div>
+                
+                <div class="about-info">
+                    <h2>Fullstack Web Developer</h2>
+                    <p>
+                        Hello! My name is Dennis Das, and I am a passionate Full Stack Developer with expertise in both front-end and back-end technologies. 
+                        I specialize in creating responsive, user-friendly web applications using modern frameworks and tools.
+                    </p>
+                    
+                    <div class="personal-info">
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-birthday-cake"></i>
+                            </div>
+                            <div class="info-text">
+                                <strong>Birthday</strong>
+                                <span>25 Feb 2004</span>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <div class="info-text">
+                                <strong>Website</strong>
+                                <span>https://dennis-portfolio.vercel.app</span>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="info-text">
+                                <strong>City</strong>
+                                <span>Kanyakumari, India</span>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="info-text">
+                                <strong>Age</strong>
+                                <span>21</span>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="info-text">
+                                <strong>Degree</strong>
+                                <span>Bachelor's</span>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="info-text">
+                                <strong>Email</strong>
+                                <span>dennis2004das@gmail.com</span>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-briefcase"></i>
+                            </div>
+                            <div class="info-text">
+                                <strong>Freelance</strong>
+                                <span>Available</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p>
+                        I am passionate about leveraging my education and experience to contribute effectively to innovative projects 
+                        and drive positive outcomes in the field of computer science. I have a strong foundation in both front-end and 
+                        back-end development, with proficiency in Python, JavaScript, HTML, CSS, and frameworks like Django and React.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Facts -->
+            <div class="facts">
+                <div class="fact-item">
+                    <div class="fact-number">3</div>
+                    <div class="fact-text">Happy Clients</div>
+                </div>
+                
+                <div class="fact-item">
+                    <div class="fact-number">13</div>
+                    <div class="fact-text">Projects</div>
+                </div>
+                
+                <div class="fact-item">
+                    <div class="fact-number">1463</div>
+                    <div class="fact-text">Hours Of Support</div>
+                </div>
+                
+                <div class="fact-item">
+                    <div class="fact-number">2</div>
+                    <div class="fact-text">Awards</div>
+                </div>
+            </div>
+
+            <!-- Skills -->
+            <div class="skills-progress">
+                <h3>Skills</h3>
+                <div class="progress-item">
+                    <div class="progress-info">
+                        <span class="progress-name">HTML</span>
+                        <span class="progress-percent">100%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 100%"></div>
+                    </div>
+                </div>
+                
+                <div class="progress-item">
+                    <div class="progress-info">
+                        <span class="progress-name">CSS</span>
+                        <span class="progress-percent">90%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 90%"></div>
+                    </div>
+                </div>
+                
+                <div class="progress-item">
+                    <div class="progress-info">
+                        <span class="progress-name">Tailwind CSS</span>
+                        <span class="progress-percent">90%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 90%"></div>
+                    </div>
+                </div>
+                
+                <div class="progress-item">
+                    <div class="progress-info">
+                        <span class="progress-name">Bootstrap</span>
+                        <span class="progress-percent">90%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 90%"></div>
+                    </div>
+                </div>
+                
+                <div class="progress-item">
+                    <div class="progress-info">
+                        <span class="progress-name">JavaScript</span>
+                        <span class="progress-percent">80%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 80%"></div>
+                    </div>
+                </div>
+                
+                <div class="progress-item">
+                    <div class="progress-info">
+                        <span class="progress-name">MySQL</span>
+                        <span class="progress-percent">90%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 90%"></div>
+                    </div>
+                </div>
+                
+                <div class="progress-item">
+                    <div class="progress-info">
+                        <span class="progress-name">Python</span>
+                        <span class="progress-percent">80%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 80%"></div>
+                    </div>
+                </div>
+                
+                <div class="progress-item">
+                    <div class="progress-info">
+                        <span class="progress-name">Django</span>
+                        <span class="progress-percent">80%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 80%"></div>
+                    </div>
+                </div>
+                
+                <div class="progress-item">
+                    <div class="progress-info">
+                        <span class="progress-name">React.js</span>
+                        <span class="progress-percent">80%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 80%"></div>
+                    </div>
+                </div>
+                
+                <div class="progress-item">
+                    <div class="progress-info">
+                        <span class="progress-name">WordPress</span>
+                        <span class="progress-percent">80%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 80%"></div>
+                    </div>
+                </div>
+                
+                <div class="progress-item">
+                    <div class="progress-info">
+                        <span class="progress-name">Git</span>
+                        <span class="progress-percent">90%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 90%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interests -->
+            <div class="interests">
+                <h3>Interests</h3>
+                <div class="interest-items">
+                    <div class="interest-item">
+                        <div class="interest-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="interest-name">Coding</div>
+                    </div>
+                    
+                    <div class="interest-item">
+                        <div class="interest-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="interest-name">Database Management</div>
+                    </div>
+                    
+                    <div class="interest-item">
+                        <div class="interest-icon">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <div class="interest-name">Web Design</div>
+                    </div>
+                    
+                    <div class="interest-item">
+                        <div class="interest-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <div class="interest-name">Cloud Computing</div>
+                    </div>
+                    
+                    <div class="interest-item">
+                        <div class="interest-icon">
+                            <i class="fas fa-code-branch"></i>
+                        </div>
+                        <div class="interest-name">Version Control</div>
+                    </div>
+                    
+                    <div class="interest-item">
+                        <div class="interest-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <div class="interest-name">DevOps</div>
+                    </div>
+                    
+                    <div class="interest-item">
+                        <div class="interest-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="interest-name">AI/ML</div>
+                    </div>
+                    
+                    <div class="interest-item">
+                        <div class="interest-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="interest-name">Cybersecurity</div>
+                    </div>
+                    
+                    <div class="interest-item">
+                        <div class="interest-icon">
+                            <i class="fas fa-plug"></i>
+                        </div>
+                        <div class="interest-name">APIs</div>
+                    </div>
+                    
+                    <div class="interest-item">
+                        <div class="interest-icon">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <div class="interest-name">Agile Methodologies</div>
+                    </div>
+                    
+                    <div class="interest-item">
+                        <div class="interest-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="interest-name">Mobile Development</div>
+                    </div>
+                    
+                    <div class="interest-item">
+                        <div class="interest-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <div class="interest-name">UX/UI Design</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonials -->
+            <div class="testimonials">
+                <h3>Testimonials</h3>
+                <div class="testimonial-slider">
+                    <div class="testimonial-item active">
+                        <p class="testimonial-text">
+                            "As a full-stack developer, Dennis's ability to seamlessly integrate front-end and back-end technologies has significantly improved our project timelines and overall product quality."
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-img">
+                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Saul Goodman">
+                            </div>
+                            <div class="author-info">
+                                <h4>Saul Goodman</h4>
+                                <p>CTO, Tech Solutions Inc.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-item">
+                        <p class="testimonial-text">
+                            "Dennis's proficiency in building scalable APIs and intuitive user interfaces has been instrumental in enhancing our platform's performance and user experience."
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-img">
+                                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Sara Wilsson">
+                            </div>
+                            <div class="author-info">
+                                <h4>Sara Wilsson</h4>
+                                <p>Lead Developer, Design Xperts</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-item">
+                        <p class="testimonial-text">
+                            "Dennis's expertise in database management and server-side scripting has streamlined our backend processes, resulting in a more robust and efficient application."
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-img">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Jena Karlis">
+                            </div>
+                            <div class="author-info">
+                                <h4>Jena Karlis</h4>
+                                <p>Tech Lead, E-Commerce Solutions</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-item">
+                        <p class="testimonial-text">
+                            "Dennis's dedication to writing clean, maintainable code has had a profound impact on our project's stability and scalability, making him an invaluable member of our development team."
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-img">
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Matt Brandon">
+                            </div>
+                            <div class="author-info">
+                                <h4>Matt Brandon</h4>
+                                <p>Senior Developer, Freelance Projects</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-item">
+                        <p class="testimonial-text">
+                            "Dennis's ability to quickly grasp complex business requirements and implement effective solutions has been crucial to our project's success. His technical expertise and problem-solving skills are second to none."
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-img">
+                                <img src="https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="John Larson">
+                            </div>
+                            <div class="author-info">
+                                <h4>John Larson</h4>
+                                <p>Lead Developer, InnovateTech</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-nav">
+                        <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
+                        <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+
+       
+            
+            <div class="btn-container">
+                <a href="index.html" class="btn">Back to Home</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menuToggle');
+            const navbar = document.getElementById('navbar');
+            
+            if (menuToggle && navbar) {
+                menuToggle.addEventListener('click', () => {
+                    navbar.classList.toggle('active');
+                });
+                
+                const navLinks = document.querySelectorAll('nav a');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        navbar.classList.remove('active');
+                    });
+                });
+            }
+            
+            // Testimonial slider
+            const testimonials = document.querySelectorAll('.testimonial-item');
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+            let currentIndex = 0;
+            
+            function showTestimonial(index) {
+                testimonials.forEach(testimonial => {
+                    testimonial.classList.remove('active');
+                });
+                
+                testimonials[index].classList.add('active');
+            }
+            
+            if (prevBtn && nextBtn) {
+                prevBtn.addEventListener('click', () => {
+                    currentIndex = (currentIndex > 0) ? currentIndex - 1 : testimonials.length - 1;
+                    showTestimonial(currentIndex);
+                });
+                
+                nextBtn.addEventListener('click', () => {
+                    currentIndex = (currentIndex < testimonials.length - 1) ? currentIndex + 1 : 0;
+                    showTestimonial(currentIndex);
+                });
+                
+                // Auto slide every 5 seconds
+                setInterval(() => {
+                    currentIndex = (currentIndex < testimonials.length - 1) ? currentIndex + 1 : 0;
+                    showTestimonial(currentIndex);
+                }, 5000);
+            }
+            
+            // Animate skill bars
+            const skillBars = document.querySelectorAll('.progress-fill');
+            skillBars.forEach(bar => {
+                const targetWidth = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = targetWidth;
+                }, 500);
+            });
+            
+            // Animate fact numbers
+            const factNumbers = document.querySelectorAll('.fact-number');
+            factNumbers.forEach(fact => {
+                const targetNumber = parseInt(fact.textContent);
+                const duration = 2000;
+                const increment = targetNumber / (duration / 16);
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= targetNumber) {
+                        fact.textContent = targetNumber;
+                        clearInterval(timer);
+                    } else {
+                        fact.textContent = Math.floor(current);
+                    }
+                }, 16);
+            });
+        });
+    </script>
+</body>
+</html>
